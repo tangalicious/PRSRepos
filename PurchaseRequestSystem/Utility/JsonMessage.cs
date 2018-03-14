@@ -1,0 +1,42 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace PurchaseRequestSystem.Utility
+{
+    public class JsonMessage
+    {
+        public string Result { get; set; }
+        public string Message { get; set; }
+
+        public JsonMessage(string Result, string Message)
+        {
+            this.Result = Result;
+            this.Message = Message;
+        }
+    }
+    public class JsonNetResult : JsonResult
+    {
+
+        public override void ExecuteResult(ControllerContext context)
+        {
+            HttpResponseBase response = context.HttpContext.Response;
+            response.ContentType = "application/json";
+            if (ContentEncoding != null)
+                response.ContentEncoding = ContentEncoding;
+            if (Data != null)
+            {
+                JsonTextWriter writer = new JsonTextWriter(response.Output) { Formatting = Formatting.Indented };
+                JsonSerializerSettings serialzerSettings = new JsonSerializerSettings();
+                serialzerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+                JsonSerializer serializer = JsonSerializer.Create(serialzerSettings);
+                serializer.Serialize(writer, Data);
+                writer.Flush();
+            }
+        }
+
+    }
+}
