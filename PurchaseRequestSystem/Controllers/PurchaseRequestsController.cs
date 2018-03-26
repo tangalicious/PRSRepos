@@ -22,7 +22,7 @@ namespace PurchaseRequestSystem.Controllers
         }
         public ActionResult List()
         {
-            return Json(db.PurchaseRequests.ToList(), JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = db.PurchaseRequests.ToList() };
         }
 
         // /PurchaseRequests/Get/5
@@ -37,7 +37,7 @@ namespace PurchaseRequestSystem.Controllers
             {
                 return Json(new JsonMessage("Failure", "Id is not found"), JsonRequestBehavior.AllowGet);
             }
-            return Json(purchaserequest, JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = purchaserequest };
         }
         // /PurchaseRequests/Create [POST]
         public ActionResult Create([FromBody] PurchaseRequest purchaserequest)

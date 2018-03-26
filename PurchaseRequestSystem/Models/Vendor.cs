@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 
 namespace PurchaseRequestSystem.Models
 {
@@ -32,6 +35,6 @@ namespace PurchaseRequestSystem.Models
         public DateTime DateCreated { get; set; }
         //Requires to be set by database
         //public DateTime DateUpdated { get; set; }
-        public int UpdatedByUser { get; set; }
+        
     }
 }

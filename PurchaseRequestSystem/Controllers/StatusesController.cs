@@ -22,7 +22,7 @@ namespace PurchaseRequestSystem.Controllers
         }
         public ActionResult List()
         {
-            return Json(db.Statuses.ToList(), JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = db.Statuses.ToList() };
         }
         // /Statuses/Get/3
         public ActionResult Get(int? id)
@@ -36,7 +36,7 @@ namespace PurchaseRequestSystem.Controllers
             {
                 return Json(new JsonMessage("Failure", "Id is not found"), JsonRequestBehavior.AllowGet);
             }
-            return Json(status, JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = status };
         }
         // /Statuses/Create [POST]
         public ActionResult Create([FromBody] Status status)
@@ -63,7 +63,7 @@ namespace PurchaseRequestSystem.Controllers
             Status status2 = db.Statuses.Find(status.ID);
             status2.Description = status.Description;
             status2.Active = status.Active;
-            status2.UpdatedByUser = status.UpdatedByUser;
+           
             try
             {
                 db.SaveChanges();

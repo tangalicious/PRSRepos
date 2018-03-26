@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
+
+
 namespace PurchaseRequestSystem.Controllers
 {
     public class UsersController : Controller
@@ -22,7 +24,7 @@ namespace PurchaseRequestSystem.Controllers
         }
         public ActionResult List()
         {
-            return Json(db.Users.ToList(), JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = db.Users.ToList() };
         }
         // /Users/Get/5
         public ActionResult Get(int? id)
@@ -36,11 +38,12 @@ namespace PurchaseRequestSystem.Controllers
             {
                 return Json(new JsonMessage("Failure", "Id is not found"), JsonRequestBehavior.AllowGet);
             }
-            return Json(user, JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = user };
         }
         // /Users/Create [POST]
         public ActionResult Create([FromBody] User user)
         {
+            if (user.UserName == null) return new EmptyResult();
             user.DateCreated = DateTime.Now; 
             if (!ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace PurchaseRequestSystem.Controllers
         // /Users/Change [POST]
         public ActionResult Change([FromBody] User user)
         {
+            if (user.UserName == null) return new EmptyResult();
             User user2 = db.Users.Find(user.ID);
             user2.UserName = user.UserName;
             user2.Password = user.Password;
@@ -71,7 +75,7 @@ namespace PurchaseRequestSystem.Controllers
             user2.IsReviewer = user.IsReviewer;
             user2.IsAdmin = user.IsAdmin;
             user2.Active = user.Active;
-            user2.UpdatedByUser = user.UpdatedByUser;
+            
             try
             {
                 db.SaveChanges();
@@ -85,6 +89,12 @@ namespace PurchaseRequestSystem.Controllers
         // /Users/Remove
         public ActionResult Remove([FromBody] User user)
         {
+            if (user.UserName == null) return new EmptyResult();
+            if (!ModelState.IsValid)
+            {
+                return Json(new JsonMessage("Failure", "ModelState is not valid"), JsonRequestBehavior.AllowGet);
+            }
+            
             User user2 = db.Users.Find(user.ID);
             db.Users.Remove(user2);
             try

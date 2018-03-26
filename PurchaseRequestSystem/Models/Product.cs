@@ -6,14 +6,14 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Threading.Tasks;
+
 
 namespace PurchaseRequestSystem.Models
 {
     public class Product
     {
         public int ID { get; set; }
-        [Required]
-        [Index(IsUnique = true)]
         public int VendorID { get; set; }
         [MaxLength(50)]
         public string PartNumber { get; set; }//Vendor-provided part #
@@ -31,7 +31,7 @@ namespace PurchaseRequestSystem.Models
         public bool Active { get; set; } = true;
         public DateTime DateCreated { get; set; }
         //public DateTime DateUpdated { get; set; }
-        public int UpdatedByUser { get; set; }
+        
 
         [JsonIgnore]
         public virtual Vendor Vendor { get; set; }

@@ -22,7 +22,7 @@ namespace PurchaseRequestSystem.Controllers
         }
         public ActionResult List()
         {
-            return Json(db.Products.ToList(), JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = db.Products.ToList() };
         }
         // /Products/Get/5
         public ActionResult Get(int? id)
@@ -36,7 +36,7 @@ namespace PurchaseRequestSystem.Controllers
             {
                 return Json(new JsonMessage("Failure", "Id is not found"), JsonRequestBehavior.AllowGet);
             }
-            return Json(product, JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = product };
         }
         // /Products/Create [POST]
         public ActionResult Create([FromBody] Product product)
@@ -61,13 +61,11 @@ namespace PurchaseRequestSystem.Controllers
         public ActionResult Change([FromBody] Product product)
         {
             Product product2 = db.Products.Find(product.ID);
+            product2.PartNumber = product.PartNumber;
             product2.VendorID = product.VendorID;
             product2.Name = product.Name;
             product2.Price = product.Price;
             product2.Unit = product.Unit;
-            product2.PhotoPath = product.PhotoPath;
-            product2.Active = product.Active;
-            product2.UpdatedByUser = product.UpdatedByUser;
             try
             {
                 db.SaveChanges();

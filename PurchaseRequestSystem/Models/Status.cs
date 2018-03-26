@@ -17,6 +17,6 @@ namespace PurchaseRequestSystem.Models
         public bool Active { get; set; } = true;
         public DateTime DateCreated { get; set; }
         //public DateTime DateUpdated { get; set; }
-        public int UpdatedByUser { get; set; }
+        
     }
 }

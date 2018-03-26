@@ -55,7 +55,7 @@ namespace PurchaseRequestSystem.Controllers
         }
         public ActionResult List()
         {
-            return Json(db.PRLIs.ToList(), JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = db.PRLIs.ToList() };
         }
         // /PRLIs/Get/5
         public ActionResult Get(int? id)
@@ -69,7 +69,7 @@ namespace PurchaseRequestSystem.Controllers
             {
                 return Json(new JsonMessage("Failure", "Id is not found"), JsonRequestBehavior.AllowGet);
             }
-            return Json(prli, JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = prli };
         }
         // /PRLIs/Create [POST]
         public ActionResult Create([FromBody] PRLIs prli)
@@ -102,7 +102,7 @@ namespace PurchaseRequestSystem.Controllers
             prli2.Quantity = prli.Quantity;
             prli2.Active = prli.Active;
             prli2.DateCreated = prli.DateCreated;
-            prli2.UpdatedByUser = prli.UpdatedByUser;
+            
             try
             {
                 db.SaveChanges();

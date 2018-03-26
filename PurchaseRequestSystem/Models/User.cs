@@ -37,9 +37,7 @@ namespace PurchaseRequestSystem.Models
         //DateCreated requires database entry
         public DateTime DateCreated { get; set; }
 
-        [JsonIgnore]
+        
         //public DateTime DateUpdated { get; set; }
-        public int UpdatedByUser { get; set; }
-
     }
 }

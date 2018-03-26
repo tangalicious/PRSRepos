@@ -21,7 +21,7 @@ namespace PurchaseRequestSystem.Controllers
         }
         public ActionResult List()
         {
-            return Json(db.Vendors.ToList(), JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = db.Vendors.ToList() };
         }
         // /Vendors/Get/5
         public ActionResult Get(int? id)
@@ -35,11 +35,12 @@ namespace PurchaseRequestSystem.Controllers
             {
                 return Json(new JsonMessage("Failure", "Id is not found"), JsonRequestBehavior.AllowGet);
             }
-            return Json(vendor, JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = vendor };
         }
         // /Vendors/Create [POST]
         public ActionResult Create([FromBody] Vendor vendor)
         {
+
             vendor.DateCreated = DateTime.Now;
             if (!ModelState.IsValid)
             {
@@ -60,6 +61,7 @@ namespace PurchaseRequestSystem.Controllers
         // /Vendors/Change [POST]
         public ActionResult Change([FromBody] Vendor vendor)
         {
+            if (vendor.Code == null) return new EmptyResult();
             Vendor vendor2 = db.Vendors.Find(vendor.ID);
             vendor2.Code = vendor.Code;
             vendor2.Name = vendor.Name;
@@ -71,8 +73,7 @@ namespace PurchaseRequestSystem.Controllers
             vendor2.Email = vendor.Email;
             vendor2.IsPreApproved = vendor.IsPreApproved;
             vendor2.Active = vendor.Active;
-            vendor2.UpdatedByUser = vendor.UpdatedByUser;
-            try
+             try
             {
                 db.SaveChanges();
             }

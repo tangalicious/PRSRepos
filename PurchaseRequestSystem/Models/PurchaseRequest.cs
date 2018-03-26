@@ -40,7 +40,7 @@ namespace PurchaseRequestSystem.Models
         public string ReasonForRejection { get; set; }
         public DateTime DateCreated { get; set; }
         //public DateTime DateUpdated { get; set; }
-        public int UpdatedByUser { get; set; }
+       
         public virtual User User { get; set; }
         //public virtual Status Status { get; set; }
 
