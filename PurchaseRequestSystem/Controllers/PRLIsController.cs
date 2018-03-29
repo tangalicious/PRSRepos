@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using Utility;
 
 namespace PurchaseRequestSystem.Controllers
 {
@@ -19,7 +20,7 @@ namespace PurchaseRequestSystem.Controllers
         {
             db = new AppDbContext();
             var purchaseRequest = db.PurchaseRequests.Find(PurchaseRequestID);
-            purchaseRequest.Total = purchaseRequest.PRLIs
+            purchaseRequest.Total = purchaseRequest.PRLI
                 .Sum(prli => prli.Quantity * prli.Product.Price);
             try
             {
@@ -47,15 +48,14 @@ namespace PurchaseRequestSystem.Controllers
         // PRLIs/List
 
 
-
         public ActionResult ActivePRLIs()
         {
-            List<PRLIs> prli = db.PRLIs.Where(e => e.Active == true).ToList();
+            List<PRLI> prli = db.PRLIs.Where(e => e.Active == true).ToList();
             return Json(prli, JsonRequestBehavior.AllowGet);
         }
         public ActionResult List()
         {
-            return new JsonNetResult { Data = db.PRLIs.ToList() };
+             return new JsonNetResult { Data = db.PRLIs.ToList() };
         }
         // /PRLIs/Get/5
         public ActionResult Get(int? id)
@@ -64,7 +64,7 @@ namespace PurchaseRequestSystem.Controllers
             {
                 return Json(new JsonMessage("Failure", "Id is null"), JsonRequestBehavior.AllowGet);
             }
-            PRLIs prli = db.PRLIs.Find(id);
+            PRLI prli = db.PRLIs.Find(id);
             if (prli == null)
             {
                 return Json(new JsonMessage("Failure", "Id is not found"), JsonRequestBehavior.AllowGet);
@@ -72,7 +72,7 @@ namespace PurchaseRequestSystem.Controllers
             return new JsonNetResult { Data = prli };
         }
         // /PRLIs/Create [POST]
-        public ActionResult Create([FromBody] PRLIs prli)
+        public ActionResult Create([FromBody] PRLI prli)
         {
             prli.DateCreated = DateTime.Now;
             if (!ModelState.IsValid)
@@ -94,9 +94,9 @@ namespace PurchaseRequestSystem.Controllers
         }
 
         // /PRLIs/Change [POST]
-        public ActionResult Change([FromBody] PRLIs prli)
+        public ActionResult Change([FromBody] PRLI prli)
         {
-            PRLIs prli2 = db.PRLIs.Find(prli.ID);
+            PRLI prli2 = db.PRLIs.Find(prli.ID);
             prli2.PurchaseRequestID = prli.PurchaseRequestID;
             prli2.ProductID = prli.ProductID;
             prli2.Quantity = prli.Quantity;
@@ -114,9 +114,9 @@ namespace PurchaseRequestSystem.Controllers
             return Json(new JsonMessage("Success", "PRLI was changed."));
         }
         // /PRLIs/Remove
-        public ActionResult Remove([FromBody] PRLIs prli)
+        public ActionResult Remove([FromBody] PRLI prli)
         {
-            PRLIs prli2 = db.PRLIs.Find(prli.ID);
+            PRLI prli2 = db.PRLIs.Find(prli.ID);
             db.PRLIs.Remove(prli2);
             try
             {

@@ -12,7 +12,7 @@ namespace PurchaseRequestSystem.Models
 
         public DbSet<Product> Products { get; set; }
         public DbSet<PurchaseRequest> PurchaseRequests { get; set; }
-        public DbSet<PRLIs> PRLIs { get; set; }
+        public DbSet<PRLI> PRLIs { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Vendor> Vendors { get; set; }

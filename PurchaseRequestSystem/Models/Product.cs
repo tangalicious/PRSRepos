@@ -32,8 +32,6 @@ namespace PurchaseRequestSystem.Models
         public DateTime DateCreated { get; set; }
         //public DateTime DateUpdated { get; set; }
         
-
-        [JsonIgnore]
         public virtual Vendor Vendor { get; set; }
     }
 }

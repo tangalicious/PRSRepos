@@ -22,7 +22,8 @@ namespace PurchaseRequestSystem.Controllers
         }
         public ActionResult List()
         {
-            return new JsonNetResult { Data = db.Products.ToList() };
+            return new JsonNetResult { Data = db.Products.ToArray() };
+            //return Json(db.Products.ToList(), JsonRequestBehavior.AllowGet);
         }
         // /Products/Get/5
         public ActionResult Get(int? id)
@@ -60,12 +61,13 @@ namespace PurchaseRequestSystem.Controllers
         // /Products/Change [POST]
         public ActionResult Change([FromBody] Product product)
         {
+            if (product.PartNumber == null) return new EmptyResult();
             Product product2 = db.Products.Find(product.ID);
             product2.PartNumber = product.PartNumber;
-            product2.VendorID = product.VendorID;
             product2.Name = product.Name;
             product2.Price = product.Price;
             product2.Unit = product.Unit;
+            product2.VendorID = product.VendorID;
             try
             {
                 db.SaveChanges();

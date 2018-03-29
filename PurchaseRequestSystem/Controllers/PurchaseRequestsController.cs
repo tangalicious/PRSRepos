@@ -62,6 +62,7 @@ namespace PurchaseRequestSystem.Controllers
         // /PurchaseRequests/Change [POST]
         public ActionResult Change([FromBody] PurchaseRequest purchaserequest)
         {
+            if (purchaserequest.DeliveryMode == null) return new EmptyResult();
             PurchaseRequest purchaserequest2 = db.PurchaseRequests.Find(purchaserequest.ID);
             purchaserequest2.UserID = purchaserequest.UserID;
             purchaserequest2.Description = purchaserequest.Description;

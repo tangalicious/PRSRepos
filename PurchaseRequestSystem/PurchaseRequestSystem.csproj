@@ -232,6 +232,26 @@
     <Compile Include="Migrations\201803261945375_fixed model issues.Designer.cs">
       <DependentUpon>201803261945375_fixed model issues.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803262028375_fixed additional issues.cs" />
+    <Compile Include="Migrations\201803262028375_fixed additional issues.Designer.cs">
+      <DependentUpon>201803262028375_fixed additional issues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803281618408_fixed purchaserequest not nulls.cs" />
+    <Compile Include="Migrations\201803281618408_fixed purchaserequest not nulls.Designer.cs">
+      <DependentUpon>201803281618408_fixed purchaserequest not nulls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803281625362_removed more [required] tags.cs" />
+    <Compile Include="Migrations\201803281625362_removed more [required] tags.Designer.cs">
+      <DependentUpon>201803281625362_removed more [required] tags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803281943529_fixed collections.cs" />
+    <Compile Include="Migrations\201803281943529_fixed collections.Designer.cs">
+      <DependentUpon>201803281943529_fixed collections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803282000078_fixed, fix.cs" />
+    <Compile Include="Migrations\201803282000078_fixed, fix.Designer.cs">
+      <DependentUpon>201803282000078_fixed, fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Product.cs" />
@@ -347,6 +367,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803261945375_fixed model issues.resx">
       <DependentUpon>201803261945375_fixed model issues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803262028375_fixed additional issues.resx">
+      <DependentUpon>201803262028375_fixed additional issues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803281618408_fixed purchaserequest not nulls.resx">
+      <DependentUpon>201803281618408_fixed purchaserequest not nulls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803281625362_removed more [required] tags.resx">
+      <DependentUpon>201803281625362_removed more [required] tags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803281943529_fixed collections.resx">
+      <DependentUpon>201803281943529_fixed collections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803282000078_fixed, fix.resx">
+      <DependentUpon>201803282000078_fixed, fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
