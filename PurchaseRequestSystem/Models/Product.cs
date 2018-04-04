@@ -25,11 +25,11 @@ namespace PurchaseRequestSystem.Models
         public decimal Price { get; set; }//Can't be negative
         [Required]
         [MaxLength(150)]
-        public string Unit { get; set; }
+        public string Unit { get; set; } = "EACH";
         [MaxLength(255)]
         public string PhotoPath { get; set; }
         public bool Active { get; set; } = true;
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
         //public DateTime DateUpdated { get; set; }
         
         public virtual Vendor Vendor { get; set; }

@@ -6,48 +6,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using Utility;
 
 namespace PurchaseRequestSystem.Controllers
 {
 
     public class PRLIsController : Controller
     {
-
         private AppDbContext db = new AppDbContext();
 
         private void CalculateTotal(int PurchaseRequestID)
         {
-            db = new AppDbContext();
-            var purchaseRequest = db.PurchaseRequests.Find(PurchaseRequestID);
-            purchaseRequest.Total = purchaseRequest.PRLI
-                .Sum(prli => prli.Quantity * prli.Product.Price);
-            try
-            {
-                db.SaveChanges();
-            } catch (Exception ex)
-            {
-                throw ex;
-            }
+            //db = new AppDbContext();
+            //var purchaseRequest = db.PurchaseRequests.Find(PurchaseRequestID);
+            //purchaseRequest.Total = (prli.Quantity * prli.Product.Price); 
+            //try
+            //{
+            //    db.SaveChanges();
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
-
-        //public CalculateTotal(PRLI prli)
-        //{
-        //    db = new AppDbContext();
-        //    PurchaseRequest pr = db.PurchaseRequests.Find(prli.PurchaseRequestID); //Find the foreign key
-        //    List<PRLI> PRLIs = db.PurchaseRequests.Where(p => p.PurchaseRequestID == pr.ID).ToList(); //Lambda 
-        //    decimal total; //declaring an intermediate total
-        //    foreach (PRLI PRLI in PRLIs) // totaling up each individual PRLI
-        //    {
-        //        total = product.Price * prli.Quantity;
-        //        PurchaseRequest.Total += total;
-        //    }
-        //    return Json(new JsonMessage("Failure", ex.Message), JsonRequestBehavior.AllowGet);
-        //}
-
         // PRLIs/List
-
-
         public ActionResult ActivePRLIs()
         {
             List<PRLI> prli = db.PRLIs.Where(e => e.Active == true).ToList();

@@ -6,15 +6,33 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-
+using Utility;
 
 
 namespace PurchaseRequestSystem.Controllers
 {
     public class UsersController : Controller
     {
+        // Users/Log-in
+
+        // GET: Users/Login/username/password
+        public ActionResult Login(string username, string password)
+        {
+            if (username == null || password == null)
+            {
+                return new JsonNetResult { Data = new Msg { Result = "Failed", Message = "Invalid username/password." } };
+            }
+            var user = db.Users.SingleOrDefault(u => u.UserName == username && u.Password == password);
+            if (user == null)
+            {
+                return new JsonNetResult { Data = new Msg { Result = "Failed", Message = "Invalid username/password." } };
+            }
+            return new JsonNetResult { Data = new Msg { Result = "Success", Message = "Login successful.", Data = user } };
+        }
+        
+
         // Users/List
-       
+
         private AppDbContext db = new AppDbContext();
 
         public ActionResult ActiveUsers()

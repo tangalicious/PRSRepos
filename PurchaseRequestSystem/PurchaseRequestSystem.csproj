@@ -252,6 +252,22 @@
     <Compile Include="Migrations\201803282000078_fixed, fix.Designer.cs">
       <DependentUpon>201803282000078_fixed, fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803301411568_fixed controller.cs" />
+    <Compile Include="Migrations\201803301411568_fixed controller.Designer.cs">
+      <DependentUpon>201803301411568_fixed controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804021420336_fixed PRLIs.cs" />
+    <Compile Include="Migrations\201804021420336_fixed PRLIs.Designer.cs">
+      <DependentUpon>201804021420336_fixed PRLIs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804021519437_changed Purhase Request.cs" />
+    <Compile Include="Migrations\201804021519437_changed Purhase Request.Designer.cs">
+      <DependentUpon>201804021519437_changed Purhase Request.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804021526287_added defaults for all required model classes.cs" />
+    <Compile Include="Migrations\201804021526287_added defaults for all required model classes.Designer.cs">
+      <DependentUpon>201804021526287_added defaults for all required model classes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Product.cs" />
@@ -382,6 +398,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803282000078_fixed, fix.resx">
       <DependentUpon>201803282000078_fixed, fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803301411568_fixed controller.resx">
+      <DependentUpon>201803301411568_fixed controller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804021420336_fixed PRLIs.resx">
+      <DependentUpon>201804021420336_fixed PRLIs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804021519437_changed Purhase Request.resx">
+      <DependentUpon>201804021519437_changed Purhase Request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804021526287_added defaults for all required model classes.resx">
+      <DependentUpon>201804021526287_added defaults for all required model classes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

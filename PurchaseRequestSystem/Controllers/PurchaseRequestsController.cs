@@ -68,7 +68,7 @@ namespace PurchaseRequestSystem.Controllers
             purchaserequest2.Description = purchaserequest.Description;
             purchaserequest2.Justification = purchaserequest.Justification;
             purchaserequest2.DeliveryMode = purchaserequest.DeliveryMode;
-            purchaserequest2.StatusID = purchaserequest.StatusID;
+            purchaserequest2.Status = purchaserequest.Status;
             purchaserequest2.Total = purchaserequest.Total;
             purchaserequest2.Active = purchaserequest.Active;
             purchaserequest2.ReasonForRejection = purchaserequest.ReasonForRejection;
@@ -85,6 +85,8 @@ namespace PurchaseRequestSystem.Controllers
         // /PurchaseRequests/Remove
         public ActionResult Remove([FromBody] PurchaseRequest purchaserequest)
         {
+            if (purchaserequest.Justification == null) return new EmptyResult();
+            if (purchaserequest.Description == null) return new EmptyResult();
             PurchaseRequest purchaserequest2 = db.PurchaseRequests.Find(purchaserequest.ID);
             db.PurchaseRequests.Remove(purchaserequest2);
             try

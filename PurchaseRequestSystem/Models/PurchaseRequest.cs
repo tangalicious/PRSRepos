@@ -27,10 +27,10 @@ namespace PurchaseRequestSystem.Models
         public string DeliveryMode { get; set; }
         
         //Needs to be set to default "New" out of ("New"//"Review"//"Approved"//"Rejected")
-        public string StatusID { get; set; } = "New";
+        public string Status { get; set; } = "New";
         //Task [MaxLength(20)]
         //Needs to be Calculated by system
-        public decimal Total { get; set; }
+        public decimal Total { get; set; } = 0;
         //public DateTime SubmittedDate { get; set; }
         public bool Active { get; set; } = true;
         [MaxLength(100)]
@@ -40,8 +40,8 @@ namespace PurchaseRequestSystem.Models
 
         public virtual User User { get; set; }
         //public virtual Status Status { get; set; }
-
-        public virtual PRLI PRLI { get; set; }
-
+        //public ICollection<PRLI> PRLI { get; set; }
+        //public virtual PRLI PRLI { get; set; }
+        public virtual List<PRLI> PRLIs { get; set; }
     }
 }

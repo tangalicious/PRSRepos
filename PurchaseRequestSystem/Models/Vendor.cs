@@ -30,9 +30,9 @@ namespace PurchaseRequestSystem.Models
         public string Phone { get; set; }
         [MaxLength(100)]
         public string Email { get; set; }
-        public bool IsPreApproved { get; set; }
+        public bool IsPreApproved { get; set; } = false;
         public bool Active { get; set; } = true;
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
         //Requires to be set by database
         //public DateTime DateUpdated { get; set; }
         

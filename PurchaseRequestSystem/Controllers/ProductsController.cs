@@ -22,8 +22,8 @@ namespace PurchaseRequestSystem.Controllers
         }
         public ActionResult List()
         {
-            return new JsonNetResult { Data = db.Products.ToArray() };
-            //return Json(db.Products.ToList(), JsonRequestBehavior.AllowGet);
+            return new JsonNetResult { Data = db.Products.ToList() };
+            
         }
         // /Products/Get/5
         public ActionResult Get(int? id)
@@ -81,6 +81,8 @@ namespace PurchaseRequestSystem.Controllers
         // /Products/Remove
         public ActionResult Remove([FromBody] Product product)
         {
+            if (product.Name == null) return new EmptyResult();
+            if (product.Unit == null) return new EmptyResult();
             Product product2 = db.Products.Find(product.ID);
             db.Products.Remove(product2);
             try

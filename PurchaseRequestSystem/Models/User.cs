@@ -31,11 +31,11 @@ namespace PurchaseRequestSystem.Models
         [Required]
         [MaxLength(75)]
         public string Email { get; set; }
-        public bool IsReviewer { get; set; }
-        public bool IsAdmin { get; set; }
+        public bool IsReviewer { get; set; } = false; 
+        public bool IsAdmin { get; set; } = false; 
         public bool Active { get; set; } = true;
         //DateCreated requires database entry
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
 
         
         //public DateTime DateUpdated { get; set; }
