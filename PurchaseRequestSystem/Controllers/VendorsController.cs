@@ -87,6 +87,13 @@ namespace PurchaseRequestSystem.Controllers
         public ActionResult Remove([FromBody] Vendor vendor)
         {
             if (vendor.Code == null) return new EmptyResult();
+            if (vendor.Name == null) return new EmptyResult();
+            if (vendor.Address == null) return new EmptyResult();
+            if (vendor.Phone == null) return new EmptyResult();
+            if (vendor.City == null) return new EmptyResult();
+            if (vendor.State == null) return new EmptyResult();
+            if (vendor.Zip == null) return new EmptyResult();
+            if (vendor.Email == null) return new EmptyResult();
             Vendor vendor2 = db.Vendors.Find(vendor.ID);
             db.Vendors.Remove(vendor2);
             try
