@@ -6,28 +6,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using Utility;
 
 namespace PurchaseRequestSystem.Controllers
 {
-
     public class PRLIsController : Controller
     {
         private AppDbContext db = new AppDbContext();
 
-        private void CalculateTotal(int PurchaseRequestID)
-        {
-            //db = new AppDbContext();
-            //var purchaseRequest = db.PurchaseRequests.Find(PurchaseRequestID);
-            //purchaseRequest.Total = (prli.Quantity * prli.Product.Price); 
-            //try
-            //{
-            //    db.SaveChanges();
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+        private void CalculateTotal(int PurchaseRequestID) {
+            db = new AppDbContext();
+            var purchaseRequest = db.PurchaseRequests.Find(PurchaseRequestID);
+            purchaseRequest.Total = purchaseRequest.PRLIs
+                .Sum(prli => prli.Quantity * prli.Product.Price);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
+    
         // PRLIs/List
         public ActionResult ActivePRLIs()
         {
@@ -120,3 +121,5 @@ namespace PurchaseRequestSystem.Controllers
         //-> Update PurchaseRequest.Total
     }
 }
+
+
